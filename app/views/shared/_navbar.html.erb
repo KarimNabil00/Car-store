@@ -10,35 +10,35 @@
   }
   .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10px;
     background-color: #333;
     color: white;
   }
   .nav-links {
     list-style-type: none;
-    margin: 0;
+    margin: 5px;
     padding: 0;
     display: flex;
   }
   .nav-links li {
-    margin-right: 20px;
+    margin-right: 25px;
   }
   .nav-links a {
     color: white;
+    font-size : 25px;
     text-decoration: none;
   }
   </style>
   </head>
 <body>
   <nav class="navbar">
-    <div class="logo">MySite</div>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
       <li>
       <%= link_to "About ", about_path, class: "nav-link" %>
       </li>
-      <li><a href="#">Services</a></li>
+      <li><a href="#">Cars For Sale</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
   </nav>
