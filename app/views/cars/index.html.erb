@@ -5,12 +5,15 @@
             font-size : 22px;
         }
         .Car-Content img {
-            width: 300px;
+            width: 400px;
+            display : flex; 
         }
-        .Car1, .Car2, .Car3 {
+        .Car {
             display: inline-block;
+            flex-wrap : 1 1 300px;
+            gap: 20px;
             width: 30%;
-            margin: 10px;
+            margin: 5px;
             text-align: center;
         }
     </style>
@@ -21,32 +24,32 @@
         <h2>Cars for Sale</h2>
     </div>
     <div class="Car-Content">
-        <div class="Car1">
+        <div class="Car",id="1">
         <%= image_tag("car11.jpg", alt: "no car Logo", width:  "500") %>
         <h3>Mercedes c180</h3>
         <p>Price: $20,000</p>
         </div>
-        <div class="Car2">
+        <div class="Car",id="2">
         <%= image_tag("car11.jpg", alt: "no car Logo", width:  "500") %>
         <h3>Car2</h3>
         <p>Price :0</p>
         </div>
-        <div class="Car3">
+        <div class="Car",id="3">
         <%= image_tag("car11.jpg", alt: "no car Logo", width:  "500") %>
         <h3>Car3</h3>
         <p>Price:0</p>
         </div>
-        <div class="Car3">
+        <div class="Car",id="4">
         <%= image_tag("car11.jpg", alt: "no car Logo", width:  "500") %>
         <h3>Car3</h3>
         <p>Price:0</p>
         </div>
-        <div class="Car3">
+        <div class="Car",id="5">
         <%= image_tag("car11.jpg", alt: "no car Logo", width:  "500") %>
         <h3>Car3</h3>
         <p>Price:0</p>
         </div>
-        <div class="Car3">
+        <div class="Car",id="6">
         <%= image_tag("car11.jpg", alt: "no car Logo", width:  "500") %>
         <h3>Car3</h3>
         <p>Price:0</p>
