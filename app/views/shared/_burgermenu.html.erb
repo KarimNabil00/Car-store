@@ -21,6 +21,7 @@
       z-index: 2;
     }
 
+
     .off-screen-menu.active {
       left: 0;
     }
@@ -93,8 +94,8 @@
   </nav>
 
   <script>
-    const burger = document.getElementById('ham-menu');
-    const menu = document.getElementById('menu');
+    var burger = document.getElementById('ham-menu');
+    var menu = document.getElementById('menu');
 
     burger.addEventListener('click', () => {
       menu.classList.toggle('active');
