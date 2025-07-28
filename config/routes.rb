@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   get "about" => "about#index"
   get "home" => "home#index"
   get "cars" => "cars#index"
+  get "sign_up" => "registrations#new"
+  post "users" => "registrations#create"
   root "home#index"
 end
