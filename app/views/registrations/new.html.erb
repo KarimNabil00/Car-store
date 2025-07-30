@@ -2,7 +2,7 @@
 <%= form_with model: @user, local: true do |form| %>
   <% if @user.errors.any? %>
     <div class="alert alert-danger">
-      <% @user.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each.uniq do |message| %>
         <div class="error"><%= message %></div>
       <% end %>
     </div>
