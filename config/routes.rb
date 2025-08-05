@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users
+  #devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :cars
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,9 +12,9 @@ Rails.application.routes.draw do
   get "about" => "about#index"
   get "home" => "home#index"
   #get "cars" => "cars#index"
-  #get "sign_up" => "registrations#new"
+  #get "sign_up" => "registrations#new" 
   #post "users" => "registrations#create"
   root "home#index"
  #resources :users, only: [:create], controller: "registrations"
- get 'sign_up', to: 'registrations#new', as: :sign_up
+ #get 'sign_up', to: 'registrations#new', as: :sign_up
 end
