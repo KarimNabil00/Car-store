@@ -1,37 +1,21 @@
-<div id="<%= dom_id car %>">
-  <p>
-    <strong>Make:</strong>
-    <%= car.make %>
-  </p>
-
-  <p>
-    <strong>Model:</strong>
-    <%= car.model %>
-  </p>
-
-  <p>
-    <strong>Year:</strong>
-    <%= car.year %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= car.price %>
-  </p>
-
-  <p>
-    <strong>Color:</strong>
-    <%= car.color %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= car.description %>
-  </p>
-
-  <p>
-    <strong>Available:</strong>
-    <%= car.available %>
-  </p>
-
-</div>
+<% if @cars.present? %>
+    <div class="Car" id="car_<%= car.id %>">
+      <h3>
+        <%= link_to "#{car.make} #{car.model}", car %>
+        </h3>
+      <p>Year: <%= car.year %></p>
+      <p>Color: <%= car.color %></p>
+      <p>Price: $<%= number_with_delimiter(car.price, delimiter: ',') %></p>
+      <p>Description: <%= car.description %></p>
+      <p>Available: <%= car.available ? 'Yes' : 'No' %></p>
+    </div>
+<% end %>
+<style>
+  .Car-Content img {
+      width: 400px;
+      display : flex;
+  }
+  .Car {
+      text-align: center;
+  }  
+</style>
