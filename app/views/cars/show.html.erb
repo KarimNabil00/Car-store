@@ -1,14 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
 <% if @car.image.attached? %>
-  <p><%= image_tag @car.image, width: 400 %></p>
+  <%= image_tag @car.image, style: "max-width: 300px; height: auto;" %>
+<% else %>
+  <p>No image available for this car.</p>
 <% end %>
-<%= render @car %>
 
+<%= render @car %>
 
 <div>
   <%= link_to "Edit this car", edit_car_path(@car) %> |
-  <%= link_to "Back to cars", cars_path %>
-
+  <%= link_to "Back to cars", cars_path %> |
   <%= button_to "Destroy this car", @car, method: :delete %>
 </div>
