@@ -1,18 +1,23 @@
 <% if @cars.present? %>
     <div class="Car" id="car_<%= car.id %>">
-      <h3>
+      <div class="Car-image">
+        <% if car.image.attached? %>
+          <%= image_tag car.image, style: "height: auto;" %>
+        <% else %> 
+          <p>No image available for this car.</p>
+        <% end %>  
+      </div>
+      <h3 class="Car-tiltle">
         <%= link_to "#{car.make} #{car.model}", car %>
         </h3>
       <p>Year: <%= car.year %></p>
       <p>Color: <%= car.color %></p>
-      <p>Price: $<%= number_with_delimiter(car.price, delimiter: ',') %></p>
-      <p>Description: <%= car.description %></p>
-      <p>Available: <%= car.available ? 'Yes' : 'No' %></p>
+      <p class="car-price">Price: $<%= number_with_delimiter(car.price, delimiter: ',') %></p>
     </div>
 <% end %>
 <style>
-  .Car-Content img {
-      width: 400px;
+  .Car-image img {
+      width: 30rem;
       display : flex;
   }
   .Car {

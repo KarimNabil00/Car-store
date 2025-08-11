@@ -27,6 +27,9 @@
       display: flex;
       background-color: #2F4F4F;
       top: 0;
+      text-align: center;
+      /* justify-content: space-between; */
+      align-items: center;
     }
 
     .ham-menu {
@@ -63,12 +66,17 @@
       top: 75% ;
     }
     .site-name {
+      display:  flex;
       color: #FFFAFA;
       font-weight: bold;
       font-size: 30px;
-      position: absolute;
-      left: 50% ;
-      right : 50% ;
+      position: relative;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      /* left: 50%; */
+      right: 50%;
+
   }
     
     .off-screen-menu ul {

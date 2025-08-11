@@ -3,7 +3,7 @@ class CarsController < ApplicationController
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    @cars = Car.where(available: true)
   end
 
   # GET /cars/1 or /cars/1.json
