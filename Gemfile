@@ -65,6 +65,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem 'inherited_resources', '~> 1.13'
+# Use Active Admin for admin interface 
 gem 'activeadmin'
+# Use Devise for authentication
 gem 'devise'
 gem 'sassc'
+
+
