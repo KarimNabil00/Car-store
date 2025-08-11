@@ -1,15 +1,62 @@
-<p style="color: green"><%= notice %></p>
+<style>
+  .car-show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;;
+  }
+  .card-img-top {
+    width: 40rem;
+    height: auto;
+  }
+  </style>
+<div class="car-show">
+  <!-- Hero Section with Car Image -->
+  <div class="car-hero">
+    <%# <%= image_tag @car.image_url, alt: "#{@car.make} #{@car.model}", class: "car-image" %> 
+    <% if @car.image.attached? %>
+      <%= image_tag @car.image, alt: "#{@car.make} #{@car.model}", class:"card-img-top" %>
+    <% end %>
+  </div>
 
-<% if @car.image.attached? %>
-  <%= image_tag @car.image, style: "max-width: 300px; height: auto;" %>
-<% else %>
-  <p>No image available for this car.</p>
-<% end %>
+  <!-- Main Content -->
+  <div class="car-details">
+    <h1><%= @car.make %> <%= @car.model %></h1>
+    <h2><%= @car.year %> • <%= number_to_currency(@car.price) %></h2>
 
-<%= render @car %>
+    <!-- Description -->
+    <div class="description">
+      <h3>Description</h3>
+      <p><%= @car.description %></p>
+    </div>
 
-<div>
-  <%= link_to "Edit this car", edit_car_path(@car) %> |
-  <%= link_to "Back to cars", cars_path %> |
-  <%= button_to "Destroy this car", @car, method: :delete %>
+    <!-- Specifications Table -->
+    <div class="specs">
+      <h3>Specifications</h3>
+      <table>
+        <tr>
+          <th>Make</th>
+          <td><%= @car.make %></td>
+        </tr>
+        <tr>
+          <th>Model</th>
+          <td><%= @car.model %></td>
+        </tr>
+        <tr>
+          <th>Year</th>
+          <td><%= @car.year %></td>
+        </tr>
+        <tr>
+          <th>Color</th>
+          <td><%= @car.color %></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta">
+      <%= link_to "Contact Seller", "#", class: "btn btn-primary" %>
+      <%= link_to "Back to Inventory", cars_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
 </div>
