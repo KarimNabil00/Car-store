@@ -9,11 +9,18 @@
     width: 40rem;
     height: auto;
   }
+   .btn.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+   color: white;
+   }
+   .btn.btn-secondary {
+    color: white; 
+    }
   </style>
 <div class="car-show">
   <!-- Hero Section with Car Image -->
   <div class="car-hero">
-    <%# <%= image_tag @car.image_url, alt: "#{@car.make} #{@car.model}", class: "car-image" %> 
     <% if @car.image.attached? %>
       <%= image_tag @car.image, alt: "#{@car.make} #{@car.model}", class:"card-img-top" %>
     <% end %>

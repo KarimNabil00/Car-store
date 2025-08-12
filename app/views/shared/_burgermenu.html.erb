@@ -2,20 +2,19 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <style>
-    <link rel="stylesheet" href="/assets/burgermenu.css" />
-  </style>
+  <link rel="stylesheet" href="/assets/burgermenu.css" />
 </head>
 
 <body>
   <div class="off-screen-menu" id="menu">
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/cars">Cars On Sale</a></li>
+      <li><a href="/cars">Cars For Sale</a></li>
       <li><a href="/about">About</a></li>
       <li><a href="/users/sign_up">Sign Up</a></li>
     </ul>
   </div>
+ <div id="overlay" class="overlay"></div>
 
   <nav>
     <div class="ham-menu" id="ham-menu">
@@ -23,17 +22,27 @@
       <span class="bar"></span>
       <span class="bar"></span>
     </div>
-    <div class="site-name"><a style="text-decoration: none; color: inherit;" href="/">MySite</a></div>
+    <div class="site-name">
+      <a style="text-decoration: none; color: inherit;" href="/">MySite</a>
+    </div>
   </nav>
-
+  
   <script>
     var burger = document.getElementById('ham-menu');
     var menu = document.getElementById('menu');
+    var overlay = document.getElementById('overlay');
 
     burger.addEventListener('click', () => {
       menu.classList.toggle('active');
+    if (menu.classList.contains('active')) {
+      overlay.style.display = 'block';
+  } else {
+    overlay.style.display = 'none';}
     });
-  </script>
-
+  overlay.addEventListener('click', () => {
+  menu.classList.remove('active');  
+  overlay.style.display = 'none';  
+}); 
+</script>
 </body>
 </html>
