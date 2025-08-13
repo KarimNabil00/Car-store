@@ -8,13 +8,17 @@ ActiveAdmin.register Car do
   ## app/admin/car.rb
 
   # Permit all attributes including the image
-  permit_params :make, :model, :year, :price, :color, :description, :available, :image
+  permit_params :make_id, :model, :year, :price, :color, :description, :available, :image
 
   # Index page configuration
 index do
     selectable_column
-    column :make
-    column :model
+    column :make do |car|
+    car.make.name
+    end
+    column :model do |car|
+      car.car_model.name if car.car_model
+      end
     column :year
     column :price
     column :color
@@ -30,8 +34,12 @@ index do
   end
 
   # Filter options
-  filter :make
-  filter :model
+  filter :make, 
+              label: "Make", 
+              as: :select, 
+              collection: Make.all.map { |m| [m.name, m.id] }, 
+              prompt: "Select a Make"
+  filter :car_model, as: :select, collection: proc { CarModel.order(:name).pluck(:name, :id) }
   filter :year
   filter :price
   filter :color
@@ -40,7 +48,7 @@ index do
   # Show page configuration
   show do
     attributes_table do
-      row :make
+      row :make_id
       row :model
       row :year
       row :price
@@ -61,8 +69,12 @@ index do
   # Form configuration
   form do |f|
     f.inputs 'Car Details' do
-      f.input :make
-      f.input :model
+    f.input :make, 
+              label: "Make", 
+              as: :select, 
+              collection: Make.all.map { |m| [m.name, m.id] }, 
+              prompt: "Select a Make"
+    f.input :car_model, as: :select, collection: [], input_html: { id: "model_select" }
       f.input :year
       f.input :price
       f.input :color, as: :select, collection: ['Red', 'Blue', 'Black', 'White', 'Silver', 'Gray', 'Green', 'Yellow', 'Other']
@@ -75,7 +87,7 @@ index do
 
   # Customize CSV export
   csv do
-    column :make
+    column :make_id
     column :model
     column :year
     column :price

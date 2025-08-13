@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_06_113818) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_13_130242) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -65,14 +65,30 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_06_113818) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "car_models", force: :cascade do |t|
+    t.string "name"
+    t.integer "make_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["make_id"], name: "index_car_models_on_make_id"
+  end
+
   create_table "cars", force: :cascade do |t|
-    t.string "make"
-    t.string "model"
     t.integer "year"
     t.decimal "price"
     t.string "color"
     t.text "description"
     t.boolean "available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "make_id", null: false
+    t.integer "car_model_id", null: false
+    t.index ["car_model_id"], name: "index_cars_on_car_model_id"
+    t.index ["make_id"], name: "index_cars_on_make_id"
+  end
+
+  create_table "makes", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,4 +107,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_06_113818) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "car_models", "makes"
+  add_foreign_key "cars", "car_models"
+  add_foreign_key "cars", "makes"
 end
