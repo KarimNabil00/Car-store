@@ -2,7 +2,7 @@ class Car < ApplicationRecord
   belongs_to :make
   belongs_to :car_model
 
-  validates :model, presence: true
+  validates :car_model_id, presence: true
   validates :year, presence: true, numericality: { only_integer: true }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :color, presence: true

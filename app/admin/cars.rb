@@ -8,7 +8,7 @@ ActiveAdmin.register Car do
   ## app/admin/car.rb
 
   # Permit all attributes including the image
-  permit_params :make_id, :model, :year, :price, :color, :description, :available, :image
+  permit_params :make_id, :car_model_id, :year, :price, :color, :description, :available, :image
 
   # Index page configuration
 index do
@@ -48,8 +48,12 @@ index do
   # Show page configuration
   show do
     attributes_table do
-      row :make_id
-      row :model
+      row :make do |car|
+        car.make.name if car.make
+      end
+      row :model do |car|
+        car.car_model.name if car.car_model
+      end
       row :year
       row :price
       row :color
@@ -69,15 +73,30 @@ index do
   # Form configuration
   form do |f|
     f.inputs 'Car Details' do
-    f.input :make, 
-              label: "Make", 
-              as: :select, 
-              collection: Make.all.map { |m| [m.name, m.id] }, 
-              prompt: "Select a Make"
-    f.input :car_model, as: :select, collection: [], input_html: { id: "model_select" }
+      f.input :make,
+        label: "Make",
+        as: :select,
+        collection: Make.all.map { |m| [m.name, m.id] },
+        input_html: {
+          id: 'car_make_select',
+          data: {
+            models_by_make: CarModel.all.group_by(&:make_id).transform_values { |models| models.map { |m| { id: m.id, name: m.name } } }.to_json
+          }
+        },
+        prompt: "Select a Make"
+
+      f.input :car_model,
+        label: "Model",
+        as: :select,
+        collection: [],
+        input_html: { id: 'car_model_select' },
+        prompt: "Select a Model"
       f.input :year
       f.input :price
-      f.input :color, as: :select, collection: ['Red', 'Blue', 'Black', 'White', 'Silver', 'Gray', 'Green', 'Yellow', 'Other']
+      f.input :color,
+       as: :select,
+        collection: ['Red', 'Blue', 'Black', 'White', 'Silver', 'Gray', 'Green', 'Yellow', 'Other'],
+        prompt: "Select a Color" 
       f.input :description, as: :text
       f.input :available
       f.input :image, as: :file, hint: f.object.image.attached? ? image_tag(f.object.image, width: '200') : content_tag(:span, "No image yet")
