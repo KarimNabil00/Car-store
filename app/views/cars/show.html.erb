@@ -22,13 +22,13 @@
   <!-- Hero Section with Car Image -->
   <div class="car-hero">
     <% if @car.image.attached? %>
-      <%= image_tag @car.image, alt: "#{@car.make} #{@car.model}", class:"card-img-top" %>
+      <%= image_tag @car.image, alt: "#{@car.make.name} #{@car.car_model.name}", class:"card-img-top" %>
     <% end %>
   </div>
 
   <!-- Main Content -->
   <div class="car-details">
-    <h1><%= @car.make %> <%= @car.model %></h1>
+    <h1><%= @car.make.name %> <%= @car.car_model.name %></h1>
     <h2><%= @car.year %> • <%= number_to_currency(@car.price) %></h2>
 
     <!-- Description -->
@@ -43,11 +43,11 @@
       <table>
         <tr>
           <th>Make</th>
-          <td><%= @car.make %></td>
+          <td><%= @car.make.name %></td>
         </tr>
         <tr>
           <th>Model</th>
-          <td><%= @car.model %></td>
+          <td><%= @car.car_model.name %></td>
         </tr>
         <tr>
           <th>Year</th>
@@ -62,7 +62,7 @@
 
     <!-- Call to Action -->
     <div class="cta">
-      <%= link_to "Contact Seller", "#", class: "btn btn-primary" %>
+      <%= link_to "Contact Seller", new_car_order_path(@car), class: "btn btn-primary" %>
       <%= link_to "Back to Inventory", cars_path, class: "btn btn-secondary" %>
     </div>
   </div>

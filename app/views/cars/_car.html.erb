@@ -8,7 +8,7 @@
         <% end %>  
       </div>
       <h3 class="Car-tiltle">
-        <%= link_to "#{car.make} #{car.model}", car %>
+        <%= link_to "#{car.make.name} #{car.car_model.name}", car %>
         </h3>
       <p>Year: <%= car.year %></p>
       <p>Color: <%= car.color %></p>

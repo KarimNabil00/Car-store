@@ -1,0 +1,32 @@
+<h1>Contact Seller about <%= @car.make.name %> <%= @car.car_model.name %></h1>
+
+<%= form_with(model: [@car, @order]) do |f| %>
+  <%= f.fields_for :customer do |c| %>
+    <div>
+      <%= c.label :name %><br>
+      <%= c.text_field :name %>
+    </div>
+
+    <div>
+      <%= c.label :phone_number %><br>
+      <%= c.text_field :phone_number %>
+    </div>
+
+    <div>
+      <%= c.label :email %><br>
+      <%= c.email_field :email %>
+    </div>
+
+    <div>
+      <%= c.label :city_id, "City" %><br>
+      <%= c.collection_select :city_id, City.all, :id, :name, prompt: "Select a City" %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit "Send Request" %>
+  </div>
+  <div>
+    <%= link_to "Back to Car Details", car_path(@car) %>
+  </div>
+<% end %>

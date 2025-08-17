@@ -1,6 +1,7 @@
 class Car < ApplicationRecord
   belongs_to :make
   belongs_to :car_model
+  has_many :orders
 
   validates :car_model_id, presence: true
   validates :year, presence: true, numericality: { only_integer: true }

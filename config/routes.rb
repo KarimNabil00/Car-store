@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :car_models, only: [] do
   collection { get :for_make }
   end
+  resources :cars, only: [:show] do
+  resources :orders, only: [:new, :create]
+end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
