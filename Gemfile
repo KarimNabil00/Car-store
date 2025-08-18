@@ -71,5 +71,6 @@ gem 'activeadmin'
 # Use Devise for authentication
 gem 'devise'
 gem 'sassc'
+gem 'phony_rails'
 
 

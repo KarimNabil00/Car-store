@@ -7,11 +7,12 @@ class OrdersController < ApplicationController
   def create
     @car = Car.find(params[:car_id])
     @order = @car.orders.build(order_params)
+    
     if @order.save
       @car.update(available: false) 
       redirect_to cars_path, notice: 'Order was successfully created.'
     else
-      render :new
+      render :new , status: :unprocessable_entity
     end
   end
   private

@@ -220,6 +220,10 @@ GEM
     nokogiri (1.18.8-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    phony (2.22.4)
+    phony_rails (0.15.0)
+      activesupport (>= 3.0)
+      phony (>= 2.18.12)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -356,6 +360,7 @@ DEPENDENCIES
   importmap-rails
   inherited_resources (~> 1.13)
   jbuilder
+  phony_rails
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
   sassc

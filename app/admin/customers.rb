@@ -10,9 +10,6 @@ ActiveAdmin.register Customer do
     column :city do |customer|
       customer.city.name if customer.city
     end
-      column "Orders Count" do |customer|
-      customer.orders.count
-    end
     actions
   end
   # Filter options
