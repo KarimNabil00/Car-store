@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     @car = Car.find(params[:car_id])
     @order = @car.orders.build(order_params)
     
-    if @order.save
+    if @order.save && verify_recaptcha(model: @order)
       @car.update(available: false) 
       redirect_to cars_path, notice: 'Order was successfully created.'
     else

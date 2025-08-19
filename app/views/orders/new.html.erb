@@ -34,6 +34,9 @@
       <%= c.collection_select :city_id, City.all, :id, :name, prompt: "Select a City" %>
     </div>
   <% end %>
+    <div>
+      <%= recaptcha_tags %>
+    </div>
 
   <div>
     <%= f.submit "Send Request" %>

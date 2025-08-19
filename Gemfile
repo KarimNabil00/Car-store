@@ -72,5 +72,7 @@ gem 'activeadmin'
 gem 'devise'
 gem 'sassc'
 gem 'phony_rails'
+gem 'dotenv'
+gem 'recaptcha'
 
 
