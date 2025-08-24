@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  permit_params :customer_id, :car_id, :created_at , :updated_at
+  permit_params :customer_id, :car_id, :created_at , :updated_at , :status 
   # Index page configuration 
   index do
     selectable_column
@@ -12,6 +12,7 @@ ActiveAdmin.register Order do
    end
   end
     column :created_at
+    column :status
     actions
   end
 end

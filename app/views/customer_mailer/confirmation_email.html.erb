@@ -1,0 +1,7 @@
+<h1>Welcome, <%= @customer.name %>!</h1>
+<p>Thank you for placing the order.</p>
+<p>Please confirm your email address to complete your order:</p>
+
+<%= link_to "Confirm your email", confirm_order_url( id: @order.id , token: @customer.confirm_token) %>
+
+<p>If you didn't place this order, please ignore this email.</p>

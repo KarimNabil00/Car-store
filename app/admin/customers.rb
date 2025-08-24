@@ -10,6 +10,7 @@ ActiveAdmin.register Customer do
     column :city do |customer|
       customer.city.name if customer.city
     end
+    column :email_confirmed
     actions
   end
   # Filter options
