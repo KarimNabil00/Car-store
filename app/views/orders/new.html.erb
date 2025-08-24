@@ -35,9 +35,8 @@
     </div>
   <% end %>
     <div>
-      <%= recaptcha_tags %>
+      <%= recaptcha_v3(action: 'registration') %>
     </div>
-
   <div>
     <%= f.submit "Send Request" %>
   </div>

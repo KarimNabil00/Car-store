@@ -7,10 +7,16 @@ class OrdersController < ApplicationController
   def create
     @car = Car.find(params[:car_id])
     @order = @car.orders.build(order_params)
+    recaptcha_valid = verify_recaptcha(model: @user, action: 'registration')
+
     
-    if @order.save && verify_recaptcha(model: @order)
-      @car.update(available: false) 
-      redirect_to cars_path, notice: 'Order was successfully created.'
+    if recaptcha_valid 
+       if @order.save  
+        @car.update(available: false) 
+        redirect_to cars_path, notice: 'Order was successfully created.'
+       else
+        render :new , status: :unprocessable_entity
+       end
     else
       render :new , status: :unprocessable_entity
     end
