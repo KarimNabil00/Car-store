@@ -19,7 +19,7 @@
 
 <div class="Container">
  <h1 class="display">Cars</h1>
- <p class="lead">Here are the available cars</p>
+ <h2>Here are the available cars</h2>
 </div>
 
 <% if @cars.empty? %>
@@ -27,12 +27,7 @@
 <% end %>
 <div class="Cars">
   <% @cars.each do |car| %>
-  <%# <div class ="card car-card h-100"> %>
     <%= render car %>
-  <%# </div> %>
-      <%# <%= link_to "Show this car", car %> 
   <% end %>
 </div>
-
-<%# <%= link_to "New car", new_car_path %> 
 

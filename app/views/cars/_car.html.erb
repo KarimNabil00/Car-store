@@ -1,3 +1,89 @@
+<style>
+  .Car {
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .Car-image img {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+  }
+  
+  .Car-title {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: #333;
+  }
+  
+  .Car p {
+    margin: 0.3rem 0;
+    color: #666;
+  }
+  
+  .car-price {
+    font-weight: bold;
+    color: #2c5aa0 !important;
+    font-size: 1.2rem;
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+    .Car {
+      margin: 0.5rem;
+      padding: 0.8rem;
+      border-radius: 6px;
+    }
+    
+    .Car-image img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+    
+    .Car-title {
+      font-size: 1.2rem;
+      margin: 0.4rem 0;
+    }
+    
+    .Car p {
+      font-size: 0.9rem;
+      margin: 0.2rem 0;
+    }
+    
+    .car-price {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 480px) {
+    .Car {
+      margin: 0.3rem;
+      padding: 0.6rem;
+    }
+    
+    .Car-title {
+      font-size: 1.1rem;
+    }
+    
+    .Car p {
+      font-size: 0.85rem;
+    }
+    
+    .car-price {
+      font-size: 1rem;
+    }
+  }
+</style>
+
 <% if @cars.present? %>
     <div class="Car" id="car_<%= car.id %>">
       <div class="Car-image">
@@ -15,12 +101,4 @@
       <p class="car-price">Price: $<%= number_with_delimiter(car.price, delimiter: ',') %></p>
     </div>
 <% end %>
-<style>
-  .Car-image img {
-      width: 30rem;
-      display : flex;
-  }
-  .Car {
-      text-align: center;
-  }  
-</style>
+

@@ -1,21 +1,181 @@
-<style>
-  .car-show {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;;
-  }
-  .card-img-top {
-    width: 40rem;
-    height: auto;
-  }
-   .btn.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-   color: white;
-   }
-   .btn.btn-secondary {
-    color: white; 
+ <style>
+    .car-show {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    
+    .car-hero {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    .card-img-top {
+      width: 100%;
+      max-width: 40rem;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .car-details {
+      width: 100%;
+      max-width: 40rem;
+    }
+    
+    .car-details h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .car-details h2 {
+      font-size: 1.5rem;
+      color: #007bff;
+      margin-bottom: 1.5rem;
+    }
+    
+    .description, .specs {
+      margin-bottom: 2rem;
+    }
+    
+    .description h3, .specs h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    .description p {
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    .specs table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .specs th, .specs td {
+      font-size:1.2rem;
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .specs th {
+      width: 30%;
+      color: #666;
+      font-weight: 600;
+    }
+    
+    .cta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .btn-primary {
+      background-color: #1E90FF;
+      border-color: #007bff;
+      color: white!important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: #0a192f;
+      border-color: #0062cc;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+    
+    .btn-secondary {
+      background-color: #02111fff;
+      border-color: #6c757d;
+      color: white !important;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      background-color: #1E90FF;
+      border-color: #545b62;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(108,117,125,0.3);
+    }
+    
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .car-show {
+        padding: 1rem;
+      }
+      
+      .car-details h1 {
+        font-size: 1.8rem;
+      }
+      
+      .car-details h2 {
+        font-size: 1.3rem;
+      }
+      
+      .description h3, .specs h3 {
+        font-size: 1.3rem;
+      }
+      
+      .specs th, .specs td {
+        padding: 0.5rem;
+        display: block;
+        width: 100%;
+      }
+      
+      .specs th {
+        background-color: #f8f9fa;
+        margin-top: 0.5rem;
+        border: none;
+        padding-bottom: 0.25rem;
+      }
+      
+      .specs tr {
+        display: block;
+        margin-bottom: 0.5rem;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 0.5rem;
+      }
+      
+      .cta {
+        flex-direction: column;
+      }
+      
+      .btn-primary, .btn-secondary {
+        text-align: center;
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .car-details h1 {
+        font-size: 1.6rem;
+      }
+      
+      .car-details h2 {
+        font-size: 1.2rem;
+      }
+      
+      .card-img-top {
+        border-radius: 6px;
+      }
     }
   </style>
 <div class="car-show">
