@@ -18,7 +18,12 @@
   resources :orders do
     member do
       get :confirm
+      get :pending
     end
+    collection do
+      get :verify_customer   # GET form
+      post :verify_customer  # POST submit
+   end
   end
 
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

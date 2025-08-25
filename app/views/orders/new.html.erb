@@ -41,6 +41,9 @@
     <%= f.submit "Send Request" %>
   </div>
   <div>
+    <%= link_to "I have ordered before", verify_customer_orders_path(car_id: @car.id), class: "btn btn-secondary" %>
+  </div>
+  <div>
     <%= link_to "Back to Car Details", car_path(@car) %>
   </div>
 <% end %>

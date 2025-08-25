@@ -1,0 +1,28 @@
+<h1>Verify Your Email</h1>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert alert-info">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<%= form_with url: verify_customer_orders_path, method: :post do %>
+    <%= hidden_field_tag :car_id, params[:car_id] %>
+
+    <div>
+    <%= label_tag :email, "Enter your email" %><br>
+    <%= email_field_tag :email, nil, required: true %>
+  </div>
+
+  <div>
+  <%= submit_tag "Send Confirmation Link" %>
+ <% end %>
+ </div>
+ 
+ <div>
+  <%= link_to "Back to Car Details", car_path(params[:car_id]) %>
+ </div>

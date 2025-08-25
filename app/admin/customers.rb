@@ -11,6 +11,9 @@ ActiveAdmin.register Customer do
       customer.city.name if customer.city
     end
     column :email_confirmed
+    column :order_count do |customer|
+      customer.orders.count
+    end
     actions
   end
   # Filter options

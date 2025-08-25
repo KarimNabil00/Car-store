@@ -1,21 +1,21 @@
 class OrdersController < ApplicationController
-    def new
+  def new
     @car = Car.find(params[:car_id])
     @order = @car.orders.build
     @order.build_customer
-    end
+  end
+
+
   def create
     @car = Car.find(params[:car_id])
     @order = @car.orders.build(order_params)
     @order.status = :pending
     # recaptcha_valid = verify_recaptcha(model: @user, action: 'registration')
-
     # if recaptcha_valid 
        if @order.save
         @order.customer.reload
         @order.customer.send_confirmation_email(@order) 
-        # @car.update(available: false) 
-        redirect_to cars_path, notice: 'Order created successfully. Please check your email to confirm and complete your order.'
+        redirect_to pending_order_path(@order), notice: 'Order created successfully. Please check your email to confirm and complete your order.'
        else
         render :new , status: :unprocessable_entity
        end
@@ -23,6 +23,31 @@ class OrdersController < ApplicationController
     #   render :new , status: :unprocessable_entity
     # end
   end
+
+
+  def pending 
+    order = Order.find(params[:id])
+    unless order.pending?
+      redirect_to cars_path, notice: 'Your email has been confirmed and your order is now confirmed.'
+    end 
+  end
+
+
+  def verify_customer
+    email = params[:email]
+    @customer = Customer.find_by(email: email)
+    if @customer
+      @car = Car.find(params[:car_id])
+      @order = @car.orders.build(customer: @customer) 
+      @order.save
+      @customer.regenerate_confirmation_token!  
+      @order.customer.send_confirmation_email(@order)
+      redirect_to pending_order_path(@order), notice: 'A confirmation email has been sent to your email address. Please check your email to confirm and complete your order.'
+    else
+       render :verify_customer, status: :unprocessable_entity 
+    end
+  end
+
   def confirm
     @order = Order.find(params[:id])
     customer = @order.customer

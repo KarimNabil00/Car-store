@@ -15,6 +15,11 @@ class Customer < ApplicationRecord
   def send_confirmation_email(order)
     CustomerMailer.confirmation_email(self, order).deliver_later
   end
+
+  def regenerate_confirmation_token!
+    update(confirm_token: SecureRandom.urlsafe_base64)
+  end
+
   private
 
   def generate_confirmation_token
