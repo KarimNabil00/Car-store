@@ -7,6 +7,14 @@
     border-radius: 8px;
     background: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-decoration: none !important;
+    color: inherit;
+  }
+  .Car:hover {
+  transform: scale(1.02); 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;       
   }
   
   .Car-image img {
@@ -85,20 +93,22 @@
 </style>
 
 <% if @cars.present? %>
-    <div class="Car" id="car_<%= car.id %>">
+    <%= link_to car_path(car), class: "Car", id: "car_#{car.id}" do %>
       <div class="Car-image">
         <% if car.image.attached? %>
           <%= image_tag car.image, style: "height: auto;" %>
-        <% else %> 
+        <% else %>
           <p>No image available for this car.</p>
-        <% end %>  
+        <% end %>
       </div>
-      <h3 class="Car-tiltle">
-        <%= link_to "#{car.make.name} #{car.car_model.name}", car %>
-        </h3>
+
+      <h3 class="Car-title">
+        <%= "#{car.make.name} #{car.car_model.name}" %>
+      </h3>
       <p>Year: <%= car.year %></p>
       <p>Color: <%= car.color %></p>
       <p class="car-price">Price: $<%= number_with_delimiter(car.price, delimiter: ',') %></p>
-    </div>
+    <% end %>
 <% end %>
+
 

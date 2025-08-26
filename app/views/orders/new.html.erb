@@ -1,49 +1,202 @@
-<h1>Contact Seller about <%= @car.make.name %> <%= @car.car_model.name %></h1>
+<style>
+  /* Center the card in the middle */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* full screen height */
+  background: #f8f9fa; /* light gray background */
+  padding: 1.5rem;
+  padding-bottom: 10rem;
+}
 
-<%= form_with(model: [@car, @order]) do |f| %>
-  <%= f.fields_for :customer do |c| %>
-   <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:
-      </h2>
-      <ul>
-        <% @order.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-    <div>
-      <%= c.label :name %><br>
-      <%= c.text_field :name %>
-    </div>
+/* Card container */
+.form-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: left;
+}
 
-    <div>
-      <%= c.label :phone_number %><br>
-      <%= c.text_field :phone_number %>
-    </div>
+/* Headline */
+.form-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: navy;
+} 
 
-    <div>
-      <%= c.label :email %><br>
-      <%= c.email_field :email %>
-    </div>
+/* Input styles */
+.form-input {
+  flex: 1;              /* take remaining space */
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
 
-    <div>
-      <%= c.label :city_id, "City" %><br>
-      <%= c.collection_select :city_id, City.all, :id, :name, prompt: "Select a City" %>
-    </div>
-  <% end %>
-    <div>
-      <%# <%= recaptcha_v3(action: 'registration') %> 
-    </div>
-  <div>
-    <%= f.submit "Send Request" %>
+/* Form groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.city-select {
+  max-width: 270px;     /* smaller dropdown */
+  font-size: 0.95rem!important; 
+}
+
+.field-error {
+  color: #dc3545;          /* red text */
+  font-size: 0.9rem;
+  margin-top: 4px;  
+  margin-left: 130px;      /* aligns under input (same as label width) */
+}
+
+/* Actions (buttons and links) */
+.form-actions {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #457005e0!important;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px!;
+  cursor: pointer;
+  font-size: 1rem!important;
+  font-weight: 600!important;
+}
+
+.btn-primary:hover {
+  transform: scale(1.02); 
+  background: #0056b3!important;
+  transition: background 0.3s ease;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white!important;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none!important;
+  display: inline-block;
+  font-size: 0.95rem;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Mobile responsiveness */
+@media (max-width: 600px) {
+  .form-card {
+    padding: 20px;
+  }
+
+  .form-card h1 {
+    font-size: 1.2rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 12px;
+  }
+    .form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-row label {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+  .city-select {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+</style>
+<div class="form-wrapper">
+  <div class="form-card">
+    <h1>Contact Seller about <%= @car.make.name %> <%= @car.car_model.name %></h1>
+
+    <%= form_with(model: [@car, @order]) do |f| %>
+      <%= f.fields_for :customer do |c| %>
+        <div class="form-group">
+         <%= c.label :name %>
+          <%= c.text_field :name, class: "form-input" %>
+          <% c.object.errors.full_messages_for(:name).each do |msg| %>
+          <div class="field-error"><%= msg %></div>
+         <% end %>
+        </div>
+        <div class="form-group">
+          <%= c.label :phone_number %>
+          <%= c.text_field :phone_number, class: "form-input" %>
+          <% c.object.errors.full_messages_for(:phone_number).each do |msg| %>
+          <div class="field-error"><%= msg %></div>
+         <% end %>
+        </div>
+        <div class="form-group">
+          <%= c.label :email %>
+          <%= c.email_field :email, class: "form-input" %>
+          <% c.object.errors.full_messages_for(:email).each do |msg| %>
+          <div class="field-error"><%= msg %></div>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= c.label :city_id, "City" %>
+          <%= c.collection_select :city_id, City.all, :id, :name,
+            { prompt: "Select a City" },
+            { class: "form-input city-select" } %>
+          <% c.object.errors.full_messages_for(:city_id).each do |msg| %>
+          <div class="field-error"><%= msg %></div>
+         <% end %>
+        </div>
+      <% end %>
+
+      <div class="form-actions">
+        <%= link_to "I have ordered before", verify_customer_orders_path(car_id: @car.id), class: "btn-link" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Send Request", class: "btn-primary" %>
+      </div>
+
+      <div class="form-actions">
+        <%= link_to "Back to Car Details", car_path(@car), class: "btn-secondary" %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= link_to "I have ordered before", verify_customer_orders_path(car_id: @car.id), class: "btn btn-secondary" %>
-  </div>
-  <div>
-    <%= link_to "Back to Car Details", car_path(@car) %>
-  </div>
-<% end %>
+</div>
