@@ -1,28 +1,134 @@
-<h1>Verify Your Email</h1>
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+<style>
+  /* Center page content */
+.page-wrapper {
+  min-height: 100vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f9;
+  padding: 20px;
+} 
 
-<% if flash[:notice] %>
-  <div class="alert alert-info">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-<%= form_with url: verify_customer_orders_path, method: :post do %>
-    <%= hidden_field_tag :car_id, params[:car_id] %>
+/* Card */
+.card {
+  background: white;
+  margin-bottom: 13rem;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
 
-    <div>
-    <%= label_tag :email, "Enter your email" %><br>
-    <%= email_field_tag :email, nil, required: true %>
-  </div>
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
 
-  <div>
-  <%= submit_tag "Send Confirmation Link" %>
- <% end %>
- </div>
- 
- <div>
-  <%= link_to "Back to Car Details", car_path(params[:car_id]) %>
- </div>
+/* Keyframes for animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Headline */
+.card h1 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Input */
+.input-field {
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Button */
+.btn-primary {
+  background: #1E90FF!important;
+  color: white!important;
+}
+
+.btn-primary:hover {
+  background: #357ab7;
+  transform: scale(1.02);
+  transition: transform 0.2s;
+
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Back link */
+.back-link {
+  margin-top: 15px;
+}
+
+.back-link a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 500px) {
+  .card {
+    padding: 20px 15px;
+  }
+}
+
+</style>
+<div class="page-wrapper">
+  <div class="card">
+    <h1>Verify Your Email</h1>
+
+    <%= form_with url: verify_customer_orders_path, method: :post do %>
+      <%= hidden_field_tag :car_id, params[:car_id] %>
+
+      <div class="form-group">
+        <%= label_tag :email, "Enter your email",class:"label" %><br>
+        <%= email_field_tag :email, nil, required: true, class: "input-field" %>
+
+        <% if params[:email].present? && @customer.nil? %>
+          <div class="error-message">Email not found</div>
+        <% end %>
+      </div>
+
+      <div class="form-group-btn">
+        <%= submit_tag "Send Confirmation Link", class: "btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="back-link">
+      <%= link_to "Back to Car Details", car_path(params[:car_id]) %>
+    </div>
+  </div>
+</div>

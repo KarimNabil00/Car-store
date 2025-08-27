@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
     @car = Car.find(params[:car_id])
     @order = @car.orders.build(order_params)
     @order.status = :pending
-    # recaptcha_valid = verify_recaptcha(model: @user, action: 'registration')
-    # if recaptcha_valid 
-       if @order.save
+    #recaptcha_valid = verify_recaptcha(model: @order, action: 'order')
+    #if recaptcha_valid 
+      if @order.save
         @order.customer.reload
         @order.customer.send_confirmation_email(@order) 
         redirect_to pending_order_path(@order), notice: 'Order created successfully. Please check your email to confirm and complete your order.'
