@@ -1,5 +1,5 @@
 ActiveAdmin.register Make do
-  permit_params :name
+  permit_params :name , :logo
 
   index do
     selectable_column
@@ -13,6 +13,9 @@ ActiveAdmin.register Make do
   form do |f|
     f.inputs do
       f.input :name
+    end
+    f.inputs do
+      f.input :logo, as: :file
     end
     f.actions
   end

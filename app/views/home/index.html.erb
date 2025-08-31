@@ -1,5 +1,227 @@
-<div class="welcome_image">
-<img src="https://www.experienceferrari.com/wp-content/uploads/2024/04/Top-5-German-Car-Brands1564100408.png" alt="Welcome Image ",
-     style="width: 100%; height: auto;">
-</div>
-<p>This is the home page of our application.</p>
+<style>
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 2rem;
+  background-color: #f5f5f5;
+  flex-wrap: wrap;
+}
+
+.hero .text-left {
+  max-width: 500px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.hero a {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.hero a:hover {
+  background: #1d4ed8;
+}
+
+.hero-img img {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Makers Section */
+.makers .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* equal columns */
+  gap:0.7rem;
+  justify-items: center; /* center the cards */
+}
+
+.maker-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 200px;   
+  height: 200px;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none!important;
+
+}
+
+.maker-card img {
+  max-width: 80px;
+  max-height: 60px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.maker-card p {
+  margin: 0;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none!important;
+}
+
+.maker-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Random Cars Section */
+.random-cars {
+  padding: 3rem 2rem;
+  background: #fafafa;
+}
+
+.random-cars h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.random-cars .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.car-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.car-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  background: #0a192f;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .hero .text-left {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-img img {
+    max-width: 90%;
+  }
+    .maker-card {
+    width: 160px;
+    height: 160px;
+    padding: 1rem;
+  }
+}
+
+
+</style>
+<!-- Hero Section -->
+<section class="hero flex items-center justify-between p-12 bg-gray-100">
+  <div class="text-left max-w-lg">
+    <h1 class="text-4xl font-bold mb-4">Find Your Dream Car</h1>
+    <p class="text-lg text-gray-600 mb-6">
+      Explore top brands and the latest models in stock, all in one place.
+    </p>
+    <%= link_to "Browse Cars", cars_path, class: "bg-blue-600 text-white px-6 py-3 rounded-lg" %>
+  </div>
+  <div class="hero-img">
+    <%= image_tag "https://www.experienceferrari.com/wp-content/uploads/2024/04/Top-5-German-Car-Brands1564100408.png", alt: "Car showcase", class: "w-96 rounded-lg shadow-lg" %>
+  </div>
+</section>
+
+<!-- Makers Section -->
+<section class="makers py-12">
+  <h2 class="text-2xl font-bold mb-6 text-center">Browse by Maker</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+    <% @makes.each do |make| %>
+       <%= link_to make_path(make) do %>
+      <div class="maker-card bg-white rounded-lg shadow p-6 text-center hover:shadow-lg transition">
+           <% if make.logo.attached? %>
+          <%= image_tag make.logo, style: "height: auto;" %>
+        <% else %>
+          <p>No image available for this car.</p>
+        <% end %>
+          <p class="font-semibold"><%= make.name %></p>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+<!-- Random Cars Section -->
+<section class="random-cars py-12 bg-gray-50">
+  <h2 class="text-2xl font-bold mb-6 text-center">In Stock Now</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <%= render partial: "cars/car", collection: @random_cars, as: :car %>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-6 mt-12">
+  <div class="max-w-6xl mx-auto text-center">
+    <p>&copy; <%= Date.current.year %> MyCarShop. All rights reserved.</p>
+  </div>
+</footer>
+
+
+

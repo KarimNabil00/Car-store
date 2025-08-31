@@ -92,7 +92,7 @@
   }
 </style>
 
-<% if @cars.present? %>
+
     <%= link_to car_path(car), class: "Car", id: "car_#{car.id}" do %>
       <div class="Car-image">
         <% if car.image.attached? %>
@@ -109,6 +109,5 @@
       <p>Color: <%= car.color %></p>
       <p class="car-price">Price: $<%= number_with_delimiter(car.price, delimiter: ',') %></p>
     <% end %>
-<% end %>
 
 

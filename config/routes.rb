@@ -9,12 +9,7 @@
     resources :cars, only: [:show] do
     resources :orders, only: [:new, :create]
   end 
-  #  resources :orders do
-  #   collection do
-  #     get :verify
-  #     get :pending
-  #    end
-  #  end
+  resources :makes, only: [:show]
   resources :orders do
     member do
       get :confirm
@@ -24,6 +19,9 @@
       get :verify_customer   # GET form
       post :verify_customer  # POST submit
    end
+    resources :makes, only: [:show] do
+    resources :cars, only: [:index, :show]
+  end
   end
 
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

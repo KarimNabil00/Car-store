@@ -1,0 +1,11 @@
+<h1><%= @make.name %> Cars</h1>
+
+<% if @cars.empty? %>
+  <p>No cars available for this make.</p>
+<% else %>
+  <div class="Cars">
+    <% @cars.each do |car| %>
+      <%= render car %>
+    <% end %>
+  </div>
+<% end %>
