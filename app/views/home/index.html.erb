@@ -1,5 +1,4 @@
 <style>
-/* General */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -8,7 +7,6 @@ body {
   line-height: 1.6;
 }
 
-/* Hero Section */
 .hero {
   display: flex;
   align-items: center;
@@ -42,6 +40,7 @@ body {
   text-decoration: none;
   font-weight: bold;
   transition: background 0.3s;
+  font-size: 0.9rem;
 }
 
 .hero a:hover {
@@ -74,9 +73,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-decoration: none!important;
+  justify-content: center; 
+}
 
+.makers a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .maker-card img {
@@ -90,7 +92,7 @@ body {
   margin: 0;
   font-size: 1rem;
   text-align: center;
-  text-decoration: none!important;
+  font-weight: 600;
 }
 
 .maker-card:hover {
@@ -166,13 +168,12 @@ footer {
   .hero-img img {
     max-width: 90%;
   }
-    .maker-card {
+  .maker-card {
     width: 160px;
     height: 160px;
     padding: 1rem;
   }
 }
-
 
 </style>
 <!-- Hero Section -->
@@ -195,13 +196,13 @@ footer {
   <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
     <% @makes.each do |make| %>
        <%= link_to make_path(make) do %>
-      <div class="maker-card bg-white rounded-lg shadow p-6 text-center hover:shadow-lg transition">
+      <div class="maker-card ">
            <% if make.logo.attached? %>
           <%= image_tag make.logo, style: "height: auto;" %>
         <% else %>
-          <p>No image available for this car.</p>
+          <p>No logo available for this car.</p>
         <% end %>
-          <p class="font-semibold"><%= make.name %></p>
+          <p><%= make.name %></p>
       </div>
       <% end %>
     <% end %>
