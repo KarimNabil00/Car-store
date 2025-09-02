@@ -6,10 +6,10 @@ class Order < ApplicationRecord
    def confirm!
     update(status: :confirmed)
     car.update(available: false)
-  end
+   end
   def self.ransackable_attributes(auth_object = nil)
     ["car_id", "customer_id", "created_at", "updated_at" , "status"] 
-   end
+  end
   def self.ransackable_associations(auth_object = nil)
     ["car", "customer"]
   end 

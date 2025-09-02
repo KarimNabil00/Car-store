@@ -1,7 +1,7 @@
   Rails.application.routes.draw do
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
-    devise_for :users
+    #devise_for :users
     resources :cars
     resources :car_models, only: [] do
     collection { get :for_make }
@@ -16,8 +16,8 @@
       get :pending
     end
     collection do
-      get :verify_customer   # GET form
-      post :verify_customer  # POST submit
+      get :verify_customer   
+      post :verify_customer  
    end
     resources :makes, only: [:show] do
     resources :cars, only: [:index, :show]

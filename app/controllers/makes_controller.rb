@@ -1,6 +1,6 @@
 class MakesController < ApplicationController
   def show
     @make = Make.find(params[:id])
-    @cars = @make.cars
+    @cars = @make.cars.where(available: true)
   end
 end

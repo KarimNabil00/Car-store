@@ -12,6 +12,8 @@ class Car < ApplicationRecord
   validates :make_id, presence: true
 
   has_one_attached :image  
+
+  
   def self.ransackable_associations(auth_object = nil)
     ["make"]
   end

@@ -99,7 +99,14 @@ index do
         prompt: "Select a Color" 
       f.input :description, as: :text
       f.input :available
-      f.input :image, as: :file, hint: f.object.image.attached? ? image_tag(f.object.image, width: '200') : content_tag(:span, "No image yet")
+      f.input :image, as: :file, hint: 
+      (if f.object.persisted? && f.object.image.attached?
+    image_tag(f.object.image, width: 200)
+  else
+    content_tag(:span, "No image yet")
+  end
+)
+
     end
     f.actions
   end
@@ -116,10 +123,4 @@ index do
     # Note: CSV export typically doesn't include images
   end
 end
-  # or
-  #
-  # permit_params do
-  #   permitted = [:make, :model, :year, :price, :color, :description, :available]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+ 
